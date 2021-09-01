@@ -1,0 +1,25 @@
+{
+  "name": "library",
+  "version": "1.0.0",
+  "description": "Collecting Book Objects",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "launch": "http-server",
+    "auto": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/koppenj/Library.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/koppenj/Library/issues"
+  },
+  "homepage": "https://github.com/koppenj/Library#readme",
+  "dependencies": {
+    "http-server": "^13.0.1",
+    "live-server": "^1.2.1"
+  }
+}
