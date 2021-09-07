@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 // Constructor for each book
 function Book(title, author, pageCount, finished) {
   this.title = title;
@@ -5,23 +6,56 @@ function Book(title, author, pageCount, finished) {
   this.pageCount = pageCount;
   this.finished = finished;
 }
-Book.prototype.info = () => `${title} by ${author}, ${pageCount} pages, ${finished}`;
+Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.finished}`;
 const book1 = new Book('The Pragmatic Programmer', 'Andrew Hunt & David Thomas', 320, 'Not Finished');
 
 const myLibrary = [book1];
 
 const openForm = document.querySelector('#openForm');
 const bookShelf = document.querySelector('#container');
-// Appending a new div which will carry the new book info.
-function addBookToLibrary() {
-  myLibrary.push();
-  const collect = document.createElement('div');
-  collect.setAttribute('id', 'myLibrary[i]');
-  collect.setAttribute('class', 'books');
-  collect.innerText = "they there they're";
-  bookShelf.appendChild(collect);
+const stockCard = document.getElementById('stockCard');
+
+function createBook() {
+  const book = new Book(
+    document.querySelector('#title').value,
+    document.querySelector('#author').value,
+    document.querySelector('#pageCount').value,
+    document.querySelector('#read').value,
+  );
+  myLibrary.push(book);
+
+  if (stockCard == null) {
+    const card = bookShelf.createElement('div');
+    // eslint-disable-next-line operator-linebreak
+    const HTML =
+    `<table id="stockCard" class="card">
+      <tr>
+        <td>Title:</td>
+        <td id="title">book.title</td>
+      </tr>
+      <tr>
+        <td>Author:</td>
+        <td id="author">book.author</td>
+      </tr>
+      <tr>
+        <td># Pages:</td>
+        <td id="pages">book.pageCount</td>
+      </tr>
+      <tr>
+        <td>Read?:</td>
+        <td id="read">book.finished</td>
+      </tr>
+    </table>`;
+    card.innerHTML = HTML;
+    bookShelf.appendChild(card);
+  } else {
+    const card = stockCard.cloneNode(true);
+    card.classList.add = 'card';
+    bookShelf.appendChild(card);
+  }
 }
 
+// Controlling modal window
 const formModal = document.getElementById('formModal');
 const addBook = document.getElementById('submitBook');
 
@@ -29,7 +63,7 @@ openForm.addEventListener('click', () => {
   formModal.style.display = 'block';
 });
 
-addBook.addEventListener('click', addBookToLibrary);
+addBook.addEventListener('click', createBook);
 addBook.addEventListener('click', () => {
   formModal.style.display = 'none';
 });
