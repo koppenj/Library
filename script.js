@@ -15,6 +15,34 @@ const openForm = document.querySelector('#openForm');
 const bookShelf = document.querySelector('#container');
 const stockCard = document.getElementById('stockCard');
 
+function readLibrary() {
+  for (const book of myLibrary) {
+    const card = document.createElement('div');
+    // eslint-disable-next-line operator-linebreak
+    const HTML =
+    `<table id="stockCard" class="card">
+      <tr>
+        <td>Title:</td>
+        <td id="title">${book.title}</td>
+      </tr>
+      <tr>
+        <td>Author:</td>
+        <td id="author">${book.author}</td>
+      </tr>
+      <tr>
+        <td># Pages:</td>
+        <td id="pages">${book.pageCount}</td>
+      </tr>
+      <tr>
+        <td>Read?:</td>
+        <td id="read">${book.finished}</td>
+      </tr>
+    </table>`;
+    card.innerHTML = HTML;
+    bookShelf.appendChild(card);
+  }
+}
+
 function createBook() {
   const book = new Book(
     document.querySelector('#title').value,
@@ -23,36 +51,7 @@ function createBook() {
     document.querySelector('#read').value,
   );
   myLibrary.push(book);
-
-  if (stockCard == null) {
-    const card = bookShelf.createElement('div');
-    // eslint-disable-next-line operator-linebreak
-    const HTML =
-    `<table id="stockCard" class="card">
-      <tr>
-        <td>Title:</td>
-        <td id="title">book.title</td>
-      </tr>
-      <tr>
-        <td>Author:</td>
-        <td id="author">book.author</td>
-      </tr>
-      <tr>
-        <td># Pages:</td>
-        <td id="pages">book.pageCount</td>
-      </tr>
-      <tr>
-        <td>Read?:</td>
-        <td id="read">book.finished</td>
-      </tr>
-    </table>`;
-    card.innerHTML = HTML;
-    bookShelf.appendChild(card);
-  } else {
-    const card = stockCard.cloneNode(true);
-    card.classList.add = 'card';
-    bookShelf.appendChild(card);
-  }
+  readLibrary();
 }
 
 // Controlling modal window
@@ -78,3 +77,4 @@ window.addEventListener('click', (event) => {
     formModal.style.display = 'none';
   }
 });
+
