@@ -16,6 +16,7 @@ const bookShelf = document.querySelector('#container');
 const stockCard = document.getElementById('stockCard');
 
 function readLibrary() {
+  bookShelf.replaceChildren();
   for (const book of myLibrary) {
     const card = document.createElement('div');
     // eslint-disable-next-line operator-linebreak
