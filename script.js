@@ -1,5 +1,4 @@
 /* eslint-disable no-restricted-syntax */
-// Constructor for each book
 function Book(title, author, pageCount, finished) {
   this.title = title;
   this.author = author;
@@ -13,7 +12,6 @@ const myLibrary = [book1];
 
 const openForm = document.querySelector('#openForm');
 const bookShelf = document.querySelector('#container');
-const stockCard = document.getElementById('stockCard');
 
 function readLibrary() {
   bookShelf.replaceChildren();
@@ -63,10 +61,12 @@ openForm.addEventListener('click', () => {
   formModal.style.display = 'block';
 });
 
-addBook.addEventListener('click', createBook);
-addBook.addEventListener('click', () => {
+addBook.addEventListener('click', (event) => {
+  event.preventDefault();
+  createBook();
   formModal.style.display = 'none';
 });
+
 const span = document.getElementsByClassName('close')[0];
 
 span.addEventListener('click', () => {
@@ -78,4 +78,3 @@ window.addEventListener('click', (event) => {
     formModal.style.display = 'none';
   }
 });
-
