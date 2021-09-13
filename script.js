@@ -12,6 +12,7 @@ const myLibrary = [book1];
 
 const openForm = document.querySelector('#openForm');
 const bookShelf = document.querySelector('#container');
+const form = document.querySelector('#bookInput');
 
 function readLibrary() {
   bookShelf.replaceChildren();
@@ -47,7 +48,7 @@ function createBook() {
     document.querySelector('#title').value,
     document.querySelector('#author').value,
     document.querySelector('#pageCount').value,
-    document.querySelector('#read').value,
+    document.querySelector('#read').checked,
   );
   myLibrary.push(book);
   readLibrary();
@@ -61,10 +62,11 @@ openForm.addEventListener('click', () => {
   formModal.style.display = 'block';
 });
 
-addBook.addEventListener('click', (event) => {
+form.addEventListener('submit', (event) => {
   event.preventDefault();
   createBook();
   formModal.style.display = 'none';
+  form.reset();
 });
 
 const span = document.getElementsByClassName('close')[0];
@@ -72,9 +74,9 @@ const span = document.getElementsByClassName('close')[0];
 span.addEventListener('click', () => {
   formModal.style.display = 'none';
 });
-
+/*
 window.addEventListener('click', (event) => {
   if (event.target === formModal) {
     formModal.style.display = 'none';
   }
-});
+}); */
