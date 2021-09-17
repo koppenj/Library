@@ -1,10 +1,15 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
+let bookCount = 1;
+
 function Book(title, author, pageCount, finished) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.finished = finished;
+  this.bookId = bookCount;
 }
+
 Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.finished}`;
 const book1 = new Book('The Pragmatic Programmer', 'Andrew Hunt & David Thomas', 320, 'Not Finished');
 
@@ -47,11 +52,13 @@ function readLibrary() {
 }
 
 function createBook() {
+  bookCount++;
   const book = new Book(
     document.querySelector('#title').value,
     document.querySelector('#author').value,
     document.querySelector('#pageCount').value,
     document.querySelector('#read').checked,
+    bookCount,
   );
   myLibrary.push(book);
   readLibrary();
@@ -86,6 +93,6 @@ window.addEventListener('click', (event) => {
 bookShelf.addEventListener('click', (event) => {
   if (event.target.matches('.removeBook')) {
     event.preventDefault();
-    console.log('delete this card');
+    console.log(this.book.bookId);
   }
 });
