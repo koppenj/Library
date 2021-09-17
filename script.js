@@ -37,6 +37,9 @@ function readLibrary() {
         <td>Read?:</td>
         <td id="read">${book.finished}</td>
       </tr>
+      <tr>
+        <td><button type= "button" class="removeBook">Remove</button></td>
+      </tr>
     </table>`;
     card.innerHTML = HTML;
     bookShelf.appendChild(card);
@@ -56,7 +59,6 @@ function createBook() {
 
 // Controlling modal window
 const formModal = document.getElementById('formModal');
-const addBook = document.getElementById('submitBook');
 
 openForm.addEventListener('click', () => {
   formModal.style.display = 'block';
@@ -74,9 +76,16 @@ const span = document.getElementsByClassName('close')[0];
 span.addEventListener('click', () => {
   formModal.style.display = 'none';
 });
-/*
+
 window.addEventListener('click', (event) => {
   if (event.target === formModal) {
     formModal.style.display = 'none';
   }
-}); */
+});
+
+bookShelf.addEventListener('click', (event) => {
+  if (event.target.matches('.removeBook')) {
+    event.preventDefault();
+    console.log('delete this card');
+  }
+});
