@@ -47,7 +47,7 @@ function readLibrary() {
         <td>Read?:</td>
         <td id="read">${bookRead}</td>
       </tr>
-    </table><br>
+    </table>
     <button type= "button" id="removeBook">Remove</button>`;
     card.innerHTML = HTML;
     bookShelf.appendChild(card);
