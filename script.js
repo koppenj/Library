@@ -1,13 +1,11 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
-let bookCount = 1;
 
 function Book(title, author, pageCount, finished) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.finished = finished;
-  this.bookId = bookCount;
 }
 
 Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.finished}`;
@@ -23,6 +21,8 @@ function readLibrary() {
   bookShelf.replaceChildren();
   for (const book of myLibrary) {
     const card = document.createElement('div');
+    card.classList.add('books');
+    card.setAttribute('data-count', myLibrary.indexOf(book));
     // eslint-disable-next-line operator-linebreak
     const HTML =
     `<table id="stockCard" class="card">
@@ -42,23 +42,19 @@ function readLibrary() {
         <td>Read?:</td>
         <td id="read">${book.finished}</td>
       </tr>
-      <tr>
-        <td><button type= "button" class="removeBook">Remove</button></td>
-      </tr>
-    </table>`;
+    </table><br>
+    <button type= "button" id="removeBook">Remove</button>`;
     card.innerHTML = HTML;
     bookShelf.appendChild(card);
   }
 }
 
 function createBook() {
-  bookCount++;
   const book = new Book(
     document.querySelector('#title').value,
     document.querySelector('#author').value,
     document.querySelector('#pageCount').value,
     document.querySelector('#read').checked,
-    bookCount,
   );
   myLibrary.push(book);
   readLibrary();
@@ -91,8 +87,9 @@ window.addEventListener('click', (event) => {
 });
 
 bookShelf.addEventListener('click', (event) => {
-  if (event.target.matches('.removeBook')) {
+  if (event.target.matches('#removeBook')) {
     event.preventDefault();
-    console.log(this.book.bookId);
+    const deleteBook = event.target.parentNode;
+    bookShelf.removeChild(deleteBook);
   }
 });
