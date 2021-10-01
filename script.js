@@ -9,9 +9,8 @@ function Book(title, author, pageCount, finished) {
 }
 
 Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.finished}`;
-const book1 = new Book('The Pragmatic Programmer', 'Andrew Hunt & David Thomas', 320, 'Not Finished');
 
-const myLibrary = [book1];
+const myLibrary = [];
 
 const openForm = document.querySelector('#openForm');
 const bookShelf = document.querySelector('#container');
@@ -19,10 +18,16 @@ const form = document.querySelector('#bookInput');
 
 function readLibrary() {
   bookShelf.replaceChildren();
+  let bookRead;
   for (const book of myLibrary) {
     const card = document.createElement('div');
     card.classList.add('books');
     card.setAttribute('data-count', myLibrary.indexOf(book));
+    if (book.finished === true) {
+      bookRead = 'Yes';
+    } else {
+      bookRead = 'No';
+    }
     // eslint-disable-next-line operator-linebreak
     const HTML =
     `<table id="stockCard" class="card">
@@ -40,7 +45,7 @@ function readLibrary() {
       </tr>
       <tr>
         <td>Read?:</td>
-        <td id="read">${book.finished}</td>
+        <td id="read">${bookRead}</td>
       </tr>
     </table><br>
     <button type= "button" id="removeBook">Remove</button>`;
