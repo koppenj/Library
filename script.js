@@ -46,6 +46,7 @@ function readLibrary() {
         <td id="read">${bookRead}</td>
       </tr>
     </table>
+    <button type= "button" id="toggleRead">Change Read Status</button>
     <button type= "button" id="removeBook">Remove</button>`;
     card.innerHTML = HTML;
     bookShelf.appendChild(card);
@@ -97,3 +98,12 @@ bookShelf.addEventListener('click', (event) => {
     readLibrary();
   }
 });
+
+/*  this bit should use a prototype to change read status
+bookShelf.addEventListener('click', (event) => {
+  if (event.target.matches('#toggleRead')) {
+    event.preventDefault();
+
+  }
+});
+ */
