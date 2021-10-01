@@ -90,6 +90,8 @@ bookShelf.addEventListener('click', (event) => {
   if (event.target.matches('#removeBook')) {
     event.preventDefault();
     const deleteBook = event.target.parentNode;
-    bookShelf.removeChild(deleteBook);
+    console.log(deleteBook.getAttribute('data-count'));
+    myLibrary.splice(deleteBook.getAttribute('data-count'), 1);
+    readLibrary();
   }
 });
