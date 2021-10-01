@@ -8,8 +8,6 @@ function Book(title, author, pageCount, finished) {
   this.finished = finished;
 }
 
-Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pageCount} pages, ${this.finished}`;
-
 const myLibrary = [];
 
 const openForm = document.querySelector('#openForm');
