@@ -8,6 +8,11 @@ function Book(title, author, pageCount, finished) {
   this.finished = finished;
 }
 
+/* Book.prototype.readStatus = () => {
+  this.finished = !this.finished;
+  return this.finished;
+}; */
+
 const myLibrary = [];
 
 const openForm = document.querySelector('#openForm');
@@ -16,16 +21,10 @@ const form = document.querySelector('#bookInput');
 
 function readLibrary() {
   bookShelf.replaceChildren();
-  let bookRead;
   for (const book of myLibrary) {
     const card = document.createElement('div');
     card.classList.add('books');
     card.setAttribute('data-count', myLibrary.indexOf(book));
-    if (book.finished === true) {
-      bookRead = 'Yes';
-    } else {
-      bookRead = 'No';
-    }
     // eslint-disable-next-line operator-linebreak
     const HTML =
     `<table id="stockCard" class="card">
@@ -43,7 +42,7 @@ function readLibrary() {
       </tr>
       <tr>
         <td>Read?:</td>
-        <td id="read">${bookRead}</td>
+        <td id="read">${book.finished}</td>
       </tr>
     </table>
     <button type= "button" id="toggleRead">Change Read Status</button>
@@ -99,11 +98,13 @@ bookShelf.addEventListener('click', (event) => {
   }
 });
 
-/*  this bit should use a prototype to change read status
-bookShelf.addEventListener('click', (event) => {
+/* bookShelf.addEventListener('click', (event) => {
   if (event.target.matches('#toggleRead')) {
     event.preventDefault();
-
+    const selectBook = event.target.parentNode;
+    const targetBook = myLibrary[selectBook.getAttribute('data-count')];
+    targetBook.readStatus();
+    bookShelf.replaceChildren();
+    readLibrary();
   }
-});
- */
+}); */
