@@ -8,10 +8,14 @@ function Book(title, author, pageCount, finished) {
   this.finished = finished;
 }
 
-/* Book.prototype.readStatus = () => {
-  this.finished = !this.finished;
-  return this.finished;
-}; */
+Book.prototype.readStatus = (object) => {
+  if (object.finished === 'Yes') {
+   return object.finished = 'No';
+  }
+  if (object.finished === 'No') {
+    return object.finished = 'Yes';
+  }
+};
 
 const myLibrary = [];
 
@@ -57,7 +61,7 @@ function createBook() {
     document.querySelector('#title').value,
     document.querySelector('#author').value,
     document.querySelector('#pageCount').value,
-    document.querySelector('#read').checked,
+    document.querySelector('#read').value,
   );
   myLibrary.push(book);
   readLibrary();
@@ -98,13 +102,12 @@ bookShelf.addEventListener('click', (event) => {
   }
 });
 
-/* bookShelf.addEventListener('click', (event) => {
+bookShelf.addEventListener('click', (event) => {
   if (event.target.matches('#toggleRead')) {
     event.preventDefault();
-    const selectBook = event.target.parentNode;
-    const targetBook = myLibrary[selectBook.getAttribute('data-count')];
-    targetBook.readStatus();
+    const targetBook = myLibrary[event.target.parentNode.getAttribute('data-count')];
+    targetBook.readStatus(targetBook);
     bookShelf.replaceChildren();
     readLibrary();
   }
-}); */
+});
