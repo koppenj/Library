@@ -1,22 +1,23 @@
 /* eslint-disable no-plusplus */
 /* eslint-disable no-restricted-syntax */
 
-function Book(title, author, pageCount, finished) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.finished = finished;
+class Book {
+  constructor (title, author, pageCount, finished) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.finished = finished;
+  }
+
+  readStatus = (object) => {
+    if (object.finished === 'Yes') {
+    return object.finished = 'No';
+    }
+    if (object.finished === 'No') {
+      return object.finished = 'Yes';
+    }
+  };
 }
-
-Book.prototype.readStatus = (object) => {
-  if (object.finished === 'Yes') {
-   return object.finished = 'No';
-  }
-  if (object.finished === 'No') {
-    return object.finished = 'Yes';
-  }
-};
-
 const myLibrary = [];
 
 const openForm = document.querySelector('#openForm');
