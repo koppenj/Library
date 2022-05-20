@@ -119,3 +119,7 @@ td {
 #stockCard {
   margin: 1em auto;
 }
+
+input:invalid {
+  border-color: red;
+}
